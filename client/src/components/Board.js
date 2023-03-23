@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import Square from "./Square";
 import { Patterns } from "../WinningPatterns";
+
 function Board({ result, setResult }) {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const [player, setPlayer] = useState("X");
@@ -46,7 +47,6 @@ function Board({ result, setResult }) {
 
       if (foundWinningPattern) {
         setResult({ winner: board[currPattern[0]], state: "won" });
-        // Mongoose --> incr current wonGames for currUser:
       }
     });
   };

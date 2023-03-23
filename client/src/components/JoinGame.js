@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useChatContext, Channel } from "stream-chat-react";
 import Game from "./Game";
 import CustomInput from "./CustomInput";
+import LeaderBoard from "./LeaderBoard";
 function JoinGame() {
   const [rivalUsername, setRivalUsername] = useState("");
   const { client } = useChatContext();
@@ -29,6 +30,7 @@ function JoinGame() {
         </Channel>
       ) : (
         <div className="joinGame">
+          <LeaderBoard />
           <h4>Create Game</h4>
           <input
             placeholder="Username of rival..."

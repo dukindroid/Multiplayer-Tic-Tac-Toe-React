@@ -4,13 +4,19 @@ import { StreamChat } from "stream-chat";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 const app = express();
+import { updateUser, leaderboard } from "./userController.js";
+// import mongoose from 'mongoose';
+// mongoose.connect('mongodb+srv://dukintosh:8Swr2EZGfpZ0lhGZ@cluster0.stx4zgo.mongodb.net/test')
+// import User from './User.js'
+
+
 
 app.use(cors());
 app.use(express.json());
-const api_key = "nv2zh5h8pmyh";
+const api_key = "k7tf6frujdg4";
 const api_secret =
-  "gf4wmuf9rj9vzfpvrdjkwr7qapwty64jdrb48qv7dmqejhrfhc6z94zr2atzcw4q";
-const serverClient = StreamChat.getInstance(api_key, api_secret);
+  "epa5rp9hfppmyh7zrnfpefc93xuvmkyt7rkz4ub4xfjzv8mxh7ymvfncw358hx4g";
+const serverClient = new StreamChat.getInstance(api_key, api_secret);
 
 app.post("/signup", async (req, res) => {
   try {
@@ -52,11 +58,25 @@ app.post("/login", async (req, res) => {
 
 // Return leaderboard table from mongoose
 app.get("/leaderboard", async (req, res) => {
-
+  try {
+    const message = await leaderboard()
+    console.log(message)
+    res.json(message)
+  } catch (error) {
+    res.json(error)
+  }
 })
 
 // Post when user wins game
-app.post("/wongame", async (req, res) => {
+app.get("/wongame/:name", async (req, res) => {
+  try {
+    const message = await updateUser(req.params.name)
+    console.log(message)
+    res.json(message)    
+  } catch (error) {
+    console.log(`Error with param: ${req.params.name} :  ${error}`)
+    res.json(error)
+  }
 
 })
 
