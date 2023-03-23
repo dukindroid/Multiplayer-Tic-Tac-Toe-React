@@ -46,6 +46,7 @@ function Board({ result, setResult }) {
 
       if (foundWinningPattern) {
         setResult({ winner: board[currPattern[0]], state: "won" });
+        // Mongoose --> incr current wonGames for currUser:
       }
     });
   };

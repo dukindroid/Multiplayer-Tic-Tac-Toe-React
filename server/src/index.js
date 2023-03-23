@@ -50,6 +50,16 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Return leaderboard table from mongoose
+app.get("/leaderboard", async (req, res) => {
+
+})
+
+// Post when user wins game
+app.post("/wongame", async (req, res) => {
+
+})
+
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
 });
